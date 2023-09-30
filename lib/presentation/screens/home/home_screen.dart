@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
+import 'package:widgets_app/presentation/screens/buttons/buttons_screen.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -64,7 +65,16 @@ class _CustomListTile extends StatelessWidget {
       subtitle: Text( menuItem.subTitle ),
       //? Evento para el click
       onTap: () {
-        
+        //? Navegación a otra pantalla 
+        // push - agrega una vista al stack
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) => const ButtonsScreen(),
+          //   ),
+          // );
+
+          //? Definiendo navegación por los nombres de las vistas
+          Navigator.pushNamed(context, menuItem.link);
       },
     );
   }
