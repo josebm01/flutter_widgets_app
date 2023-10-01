@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:widgets_app/config/menu/menu_items.dart';
+import 'package:widgets_app/presentation/screens/cards/card_screen.dart';
 
 
 class HomeScreen extends StatelessWidget {
+
+  //? static para no generar instancias con esa propiedad
+  static const String name = 'home_screen';
+
   const HomeScreen({super.key});
 
   @override
@@ -43,6 +48,7 @@ class _HomeView extends StatelessWidget {
 
 //! Widget personalizado de opciones 
 class _CustomListTile extends StatelessWidget {
+
   const _CustomListTile({
     required this.menuItem,
   });
@@ -76,8 +82,11 @@ class _CustomListTile extends StatelessWidget {
           //? Navigation - Definiendo navegación por los nombres de las vistas
           // Navigator.pushNamed(context, menuItem.link);
 
-          //? Go router 
-          context.push( menuItem.link );
+          //? Go router - push para la ruta 
+          // context.push( menuItem.link );
+
+          //? Push named para el nombre de la screen
+          context.pushNamed( CardScreen.name );
 
       },
     );
