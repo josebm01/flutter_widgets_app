@@ -88,6 +88,9 @@ class _ButtonsView extends StatelessWidget {
               label: const Text('Text Icon')
             ),
 
+            //? Botón personalizado
+            const CustomButton(),
+
             //? Botón ícono
             IconButton(onPressed: (){}, icon: const Icon( Icons.wifi_outlined )),
 
@@ -105,6 +108,38 @@ class _ButtonsView extends StatelessWidget {
             ),
 
           ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+//! Botón personalizado
+class CustomButton extends StatelessWidget {
+    
+  const CustomButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+  
+    //? Paleta de colores
+    final colors = Theme.of( context ).colorScheme;
+    
+    //? Widget para aplicar splash screen y otras configuraciones sobre ello
+    return ClipRRect(
+      //? Redondez del botón
+      borderRadius: BorderRadius.circular( 20 ),
+      child: Material(
+        color: colors.primary,
+         //? InkWell - para hacer el tap 
+        child: InkWell(
+          onTap: (){},
+          child: const Padding(
+            padding: EdgeInsets.symmetric( horizontal: 20, vertical: 10 ),
+            child: Text('Hola Mundo', style: TextStyle( color: Colors.white ) ),
+          ),
         ),
       ),
     );
