@@ -83,10 +83,10 @@ class _CustomListTile extends StatelessWidget {
           // Navigator.pushNamed(context, menuItem.link);
 
           //? Go router - push para la ruta 
-          // context.push( menuItem.link );
+          context.push( menuItem.link );
 
           //? Push named para el nombre de la screen
-          context.pushNamed( CardScreen.name );
+          // context.pushNamed( CardScreen.name );
 
       },
     );
