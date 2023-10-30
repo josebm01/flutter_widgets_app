@@ -13,20 +13,26 @@ const colorList = <Color>[
 ];
 
 class AppTheme {
+
+  //? Propiedades
   final int selectedColor;
+  final bool isDarkMode;
 
   //? Constructor
   AppTheme({
-    this.selectedColor = 0
+    this.selectedColor = 0,
+    this.isDarkMode = false
   }): 
     //? Validaciones para el color selecionado
     assert( selectedColor >= 0, 'Selected color must be greater than 0' ),
     assert( selectedColor < colorList.length, 'Selected color must be less or equal than ${ colorList.length } - 1' );
 
 
-  //? Propiedades del tema 
+  //? Métodos
   ThemeData getTheme() => ThemeData(
     useMaterial3: true,
+    //? Modo oscuro 
+    brightness: isDarkMode ? Brightness.dark : Brightness.light,
     //? Color elegido
     colorSchemeSeed: colorList[ selectedColor ],
     appBarTheme: const AppBarTheme(
