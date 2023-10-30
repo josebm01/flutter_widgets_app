@@ -14,12 +14,13 @@ const colorList = <Color>[
 
 class AppTheme {
 
-  //? Propiedades
+  //! Propiedades
   final int selectedColor;
   final bool isDarkMode;
 
-  //? Constructor
+  //! Constructor
   AppTheme({
+    //? Valores por defecto
     this.selectedColor = 0,
     this.isDarkMode = false
   }): 
@@ -28,7 +29,7 @@ class AppTheme {
     assert( selectedColor < colorList.length, 'Selected color must be less or equal than ${ colorList.length } - 1' );
 
 
-  //? Métodos
+  //! Métodos
   ThemeData getTheme() => ThemeData(
     useMaterial3: true,
     //? Modo oscuro 
@@ -38,6 +39,19 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       centerTitle: false
     )
+  );
+
+
+  //! Regresa una nueva instancia de la clase - una copia
+  AppTheme copyWith({
+    //? argumentos opcionales
+    int? selectedColor,
+    bool? isDarkMode
+
+  }) => AppTheme(
+    //? Utilizando los valores opciones y si no viene, usará los valores por defecto de la instancia de la clase
+    selectedColor: selectedColor ?? this.selectedColor,
+    isDarkMode: isDarkMode ?? this.isDarkMode
   );
 
 }

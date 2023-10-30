@@ -21,20 +21,25 @@ class MainApp extends ConsumerWidget {
   Widget build(BuildContext context, ref) {
 
     //? Obteniendo el valor del provider del tema
-    final isDarkMode = ref.watch( isDarkProvider );
-    final selectedColor = ref.watch( selectedColorProvider );
+    // final isDarkMode = ref.watch( isDarkProvider );
+    // final selectedColor = ref.watch( selectedColorProvider );
     
+
+    //? Escuchando el notifier de la instancia de la clase AppTheme
+    final AppTheme appTheme = ref.watch( themeNotifierProvider );
 
     return MaterialApp.router(
       title: 'Flutter Widgets',
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme( 
-        //? Color seleccionado de los widgets
-        selectedColor: selectedColor, 
-        //? Color seleccionado para el tema dark/light
-        isDarkMode: isDarkMode 
-      ).getTheme(), 
+      theme: appTheme.getTheme() //? Notifier provider
+
+      // theme: AppTheme( 
+      //   //? Color seleccionado de los widgets
+      //   selectedColor: selectedColor, 
+      //   //? Color seleccionado para el tema dark/light
+      //   isDarkMode: isDarkMode 
+      // ).getTheme(), 
     );
   }
 }

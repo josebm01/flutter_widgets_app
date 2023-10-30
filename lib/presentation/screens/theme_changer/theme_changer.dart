@@ -11,7 +11,9 @@ class ThemeChangerScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     
-    final isDarkMode = ref.watch( isDarkProvider );
+    // final isDarkMode = ref.watch( isDarkProvider );
+    //? stateNotifier
+    final isDarkMode = ref.watch( themeNotifierProvider ).isDarkMode;
     
     return Scaffold(
       appBar: AppBar(
@@ -20,8 +22,11 @@ class ThemeChangerScreen extends ConsumerWidget {
           IconButton(
             icon: Icon( isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_outlined ),
             onPressed: (){
-              //? Valor del tema
-              ref.read( isDarkProvider.notifier ).update((state) => !state);
+              //? Valor del tema por medio del provider
+              // ref.read( isDarkProvider.notifier ).update((state) => !state);
+
+              //? stateNotifier - ya no se el pasa el valor, porque el provider ya lo hace 
+              ref.read( themeNotifierProvider.notifier ).toggleDarkMode();
             }, 
           )
         ],
@@ -30,6 +35,8 @@ class ThemeChangerScreen extends ConsumerWidget {
     );
   }
 }
+
+
 
 class _ThemeChangerView extends ConsumerWidget {
   const _ThemeChangerView();
@@ -41,11 +48,12 @@ class _ThemeChangerView extends ConsumerWidget {
     final List<Color> colors = ref.watch( colorListProvider );
 
     //? Valor del provider para seleccionar el color 
-    final int selectedColor = ref.watch( selectedColorProvider );
+    // final int selectedColor = ref.watch( selectedColorProvider );
 
-    final bool isDarkMode = ref.watch( isDarkProvider );
+    //? stateNotifier
+    final selectedColor = ref.watch( themeNotifierProvider ).selectedColor;
+
   
-
     return ListView.builder(
       itemCount: colors.length,
       itemBuilder: (context, index) {
@@ -62,7 +70,10 @@ class _ThemeChangerView extends ConsumerWidget {
           // valor nuevo
           onChanged: (value) {
             //? Asignando al provider el valor del index que se selecciona 
-            ref.read( selectedColorProvider.notifier ).state = index;
+            // ref.read( selectedColorProvider.notifier ).state = index;
+
+            //? stateNotifier - ya no se el pasa el valor, porque el provider ya lo hace 
+            ref.read( themeNotifierProvider.notifier ).changeColorIndex( index );
           } 
         );
       },
